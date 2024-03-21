@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import streamlit as st
 
+st.set_page_config(layout="wide")
+
+
 # 웹사이트 데이터를 한 번만 불러오기 위해 st.cache 데코레이터 사용
 @st.cache_data
 def load_data(url):
