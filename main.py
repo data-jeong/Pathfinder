@@ -135,4 +135,5 @@ if selected:
     filtered_df = filtered_df.sort_values(by='study_order', ascending=True)
 
     # 인터랙티브한 데이터 테이블로 표시
-    st.dataframe(filtered_df[['title', 'url', 'study_order']])
+    st.dataframe(filtered_df[['title', 'url', 'study_order']], width=700, height=600)
+
