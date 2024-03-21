@@ -133,7 +133,10 @@ if selected:
 
     # 'study_order' 열에 따라 데이터프레임 정렬
     filtered_df = filtered_df.sort_values(by='study_order', ascending=True)
-
-    # 인터랙티브한 데이터 테이블로 표시
-    st.dataframe(filtered_df[['title', 'url', 'study_order']], width=1400, height=600)
-
+    
+    filtered_df['url'] = filtered_df['url'].str.replace('/roadmaps','')
+    # 하이퍼링크가 포함된 테이블을 Markdown으로 생성하여 표시
+    for index, row in filtered_df.iterrows():
+        # 각 로우에 대한 하이퍼링크 문자열 생성
+        markdown_link = f"[{row['title']}]({row['url']})({row['study_order']})"
+        st.markdown(markdown_link, unsafe_allow_html=True)
