@@ -1,14 +1,11 @@
-import re
+import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import streamlit as st
-
-st.set_page_config(layout="wide")
-
+from streamlit_option_menu import option_menu
 
 # 웹사이트 데이터를 한 번만 불러오기 위해 st.cache 데코레이터 사용
-@st.cache_data
+@st.cache_data()
 def load_data(url):
     data = requests.get(url)
     soup = BeautifulSoup(data.text, 'html.parser')
@@ -28,11 +25,28 @@ def load_data(url):
 
     return road_map
 
+def remove_duplicates(roadmap):
+    seen_titles = set()
+    clean_roadmap = {}
+
+    for category, topics in roadmap.items():
+        clean_topics = {}
+        for title, order in topics.items():
+            if title not in seen_titles:
+                seen_titles.add(title)
+                clean_topics[title] = order
+        clean_roadmap[category] = clean_topics
+    
+    return clean_roadmap
+
+# 메인 앱 설정
+st.set_page_config(layout="wide")
+
 # Roadmaps 데이터 로드
 url = 'https://roadmap.sh/roadmaps'
 road_map = load_data(url)
 
-
+# 정리된 로드맵 데이터 구조
 # 정리된 로드맵 데이터 구조
 roadmap_revised = {
     "AI": {
@@ -92,21 +106,6 @@ roadmap_revised = {
     }
 }
 
-# Function to remove duplicates based on their first occurrence in the overall structure
-def remove_duplicates(roadmap):
-    seen_titles = set()
-    clean_roadmap = {}
-
-    for category, topics in roadmap.items():
-        clean_topics = {}
-        for title, order in topics.items():
-            if title not in seen_titles:
-                seen_titles.add(title)
-                clean_topics[title] = order
-        clean_roadmap[category] = clean_topics
-    
-    return clean_roadmap
-
 roadmap_no_duplicates = remove_duplicates(roadmap_revised)
 
 # 중복 제거 로직 적용 및 학습 순서 및 메인 카테고리 할당
@@ -118,14 +117,22 @@ for main_category, sub_category in roadmap_no_duplicates.items():
         road_map.loc[road_map['title'].str.contains(sub_category_real,  regex=False), 'main_category'] = main_category
         road_map.loc[road_map['title'].str.contains(sub_category_real,  regex=False), 'study_order'] = rank
 
-# Streamlit 앱 시작
-st.title('Development Roadmaps')
+# 멀티페이지 구조 설정
+with st.sidebar:
+    selected = option_menu("Main Categories", list(roadmap_no_duplicates.keys()), icons=['house', 'book', 'search', 'list'])
 
-# 메인 카테고리 선택기
-category = st.selectbox('Select a main category:', options=road_map['main_category'].unique())
+# 선택된 카테고리에 따라 페이지 내용을 동적으로 변경
+if selected:
+    st.title(f'{selected} Development Roadmaps')
 
-# 선택된 카테고리에 해당하는 데이터 필터링
-filtered_df = road_map[road_map['main_category'] == category]
+    # 검색 기능
+    search_query = st.text_input("Search for a roadmap:", "")
 
-# 필요한 데이터 필드만 보여주기
-st.write(filtered_df[['title', 'url', 'study_order']])
+    # 선택된 카테고리의 데이터 필터링
+    filtered_df = road_map[(road_map['main_category'] == selected) & (road_map['title'].str.contains(search_query, case=False))]
+
+    # 'study_order' 열에 따라 데이터프레임 정렬
+    filtered_df = filtered_df.sort_values(by='study_order', ascending=True)
+
+    # 인터랙티브한 데이터 테이블로 표시
+    st.dataframe(filtered_df[['title', 'url', 'study_order']])
