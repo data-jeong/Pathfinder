@@ -55,7 +55,7 @@ if __name__ == "__main__":
     elements_data = fetch_elements(driver, 'clickable-group')
     preprocessed_data = preprocess_data(elements_data)
     aggregated_df = aggregate_data(preprocessed_data)
-    aggregated_df['contents'] = aggregated_df.apply(lambda row: row['category'] + " " + row['contents'], axis=1)
+    aggregated_df['contents'] = aggregated_df.apply(lambda row: row['category'] + "\n" + row['contents'], axis=1)
     aggregated_df['contents'] = aggregated_df['contents']
     aggregated_df.to_csv('computer_science_roadmap.csv', index=False)
     driver.close()
