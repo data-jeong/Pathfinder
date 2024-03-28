@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.chrome.options import Options
 import pandas as pd
 
 def fetch_elements(driver, class_name):
@@ -46,8 +47,11 @@ def aggregate_data(df):
 
 # Main
 if __name__ == "__main__":
-    driver = webdriver.Chrome()
-    driver.get('https://roadmap.sh/computer-science')
+    options = Options()
+    options.add_argument('headless')
+    driver = webdriver.Chrome(options=options)
+    target_url = input("TARGET ULR PLZ \n:")
+    driver.get(target_url)
     elements_data = fetch_elements(driver, 'clickable-group')
     preprocessed_data = preprocess_data(elements_data)
     aggregated_df = aggregate_data(preprocessed_data)
