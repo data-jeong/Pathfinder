@@ -1,0 +1,49 @@
+title,url,main_category,study_order
+Frontend Beginner,https://roadmap.sh/frontend?r=frontend-beginner,FRONT,1
+Backend Beginner,https://roadmap.sh/backend?r=backend-beginner,BACKEND,1
+DevOps Beginner,https://roadmap.sh/devops?r=devops-beginner,EXT,2
+Frontend,https://roadmap.sh/frontend,FRONT,9
+Backend,https://roadmap.sh/backend,BACKEND,12
+Full Stack,https://roadmap.sh/full-stack,EXT,10
+QA,https://roadmap.sh/qa,EXT,11
+DevOps,https://roadmap.sh/devops,EXT,3
+Android,https://roadmap.sh/android,APP,2
+React Native,https://roadmap.sh/react-native,APP,3
+Flutter,https://roadmap.sh/flutter,APP,1
+PostgreSQL,https://roadmap.sh/postgresql-dba,BACKEND,7
+Software Architect,https://roadmap.sh/software-architect,EXT,7
+Technical Writer,https://roadmap.sh/technical-writer,EXT,8
+AI and Data Scientist,https://roadmap.sh/ai-data-scientist,AI,3
+Data Analyst,https://roadmap.sh/data-analyst,AI,4
+MLOps,https://roadmap.sh/mlops,AI,5
+Client Side Game Dev.,https://roadmap.sh/game-developer,APP,4
+Server Side Game Dev.,https://roadmap.sh/server-side-game-developer,APP,5
+UX Design,https://roadmap.sh/ux-design,FRONT,11
+Blockchain,https://roadmap.sh/blockchain,EXT,6
+Cyber Security,https://roadmap.sh/cyber-security,EXT,5
+GraphQL,https://roadmap.sh/graphql,BACKEND,9
+React,https://roadmap.sh/react,FRONT,5
+Vue,https://roadmap.sh/vue,FRONT,6
+Angular,https://roadmap.sh/angular,FRONT,7
+Spring Boot,https://roadmap.sh/spring-boot,BACKEND,5
+ASP.NET Core,https://roadmap.sh/aspnet-core,BACKEND,6
+JavaScript,https://roadmap.sh/javascript,FRONT,2
+TypeScript,https://roadmap.sh/typescript,FRONT,8
+Node.js,https://roadmap.sh/nodejs,BACKEND,4
+C++,https://roadmap.sh/cpp,BACKEND,13
+Go,https://roadmap.sh/golang,BACKEND,14
+Rust,https://roadmap.sh/rust,BACKEND,15
+Python,https://roadmap.sh/python,AI,1
+Java,https://roadmap.sh/java,BACKEND,3
+SQL,https://roadmap.sh/sql,BACKEND,2
+Docker,https://roadmap.sh/docker,BACKEND,10
+Kubernetes,https://roadmap.sh/kubernetes,BACKEND,11
+AWS,https://roadmap.sh/aws,EXT,4
+MongoDB,https://roadmap.sh/mongodb,BACKEND,8
+Computer Science,https://roadmap.sh/computer-science,EXT,1
+Data Structures,https://roadmap.sh/datastructures-and-algorithms,AI,2
+System Design,https://roadmap.sh/system-design,BACKEND,16
+Design and Architecture,https://roadmap.sh/software-design-architecture,BACKEND,17
+Code Review,https://roadmap.sh/code-review,EXT,12
+Prompt Engineering,https://roadmap.sh/prompt-engineering,EXT,9
+Design System,https://roadmap.sh/design-system,FRONT,10
