@@ -7,10 +7,6 @@ from streamlit_option_menu import option_menu
 # 메인 앱 설정
 st.set_page_config(layout="wide")
 
-# Roadmaps 데이터 로드
-url = 'https://roadmap.sh/roadmaps'
-road_map = load_data(url)
-
 road_map = pd.read_csv('2024-04-09_roadmap.csv')
 
 # 멀티페이지 구조 설정
