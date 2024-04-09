@@ -11,7 +11,7 @@ road_map = pd.read_csv('2024-04-09_roadmap.csv')
 
 # 멀티페이지 구조 설정
 with st.sidebar:
-    selected = option_menu("Main Categories", list(roadmap_no_duplicates.keys()), icons=['house', 'book', 'search', 'list'])
+    selected = option_menu("Main Categories", list(road_map['main_category'].unique()), icons=['house', 'book', 'search', 'list'])
 
 # 선택된 카테고리에 따라 페이지 내용을 동적으로 변경
 if selected:
@@ -26,7 +26,6 @@ if selected:
     # 'study_order' 열에 따라 데이터프레임 정렬
     filtered_df = filtered_df.sort_values(by='study_order', ascending=True)
     
-    filtered_df['url'] = filtered_df['url'].str.replace('/roadmaps','')
     # 하이퍼링크가 포함된 테이블을 Markdown으로 생성하여 표시
     for index, row in filtered_df.iterrows():
         # 각 로우에 대한 하이퍼링크 문자열 생성
